@@ -1,0 +1,22 @@
+-- Union of doctors, nurses, health spending and pharmaceutical spending table 
+WITH combinedtable AS (
+SELECT *
+FROM oecd.doctors
+UNION ALL
+SELECT *
+FROM oecd.nurses
+UNION ALL
+SELECT *
+FROM oecd.health_spending
+UNION ALL 
+SELECT *
+FROM oecd.pharmaceutical_spending)
+
+SELECT time
+	,location
+	,indicator
+	,subject
+	,sum(value)
+FROM combinedtable
+GROUP BY time, location, indicator, subject
+ORDER BY time, location, indicator

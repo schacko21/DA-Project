@@ -1,0 +1,14 @@
+--- Total doctors by decade (per 100,000 inhabitants) by country
+SELECT
+	location
+	,CASE WHEN time BETWEEN 1960 AND 1969 THEN '1960s'
+		WHEN time BETWEEN 1970 AND 1979 THEN '1970s'
+		WHEN time BETWEEN 1980 AND 1989 THEN '1980s'
+		WHEN time BETWEEN 1990 AND 1999 THEN '1990s'
+		WHEN time BETWEEN 2000 AND 2009 THEN '2000s'
+		ELSE '2010s'END as decade
+	,sum(value) as doctor_decade_value
+
+FROM oecd.doctors
+GROUP BY location, decade
+ORDER BY decade ASC

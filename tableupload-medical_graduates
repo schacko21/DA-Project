@@ -1,0 +1,22 @@
+BEGIN;
+
+CREATE SCHEMA IF NOT EXISTS OECD;
+
+CREATE TABLE IF NOT EXISTS OECD.medical_graduates(location TEXT
+										,indicator TEXT
+										,subject TEXT
+										,measure varchar
+										,frequency TEXT
+										,time integer
+										,value numeric
+										,flagcodes varchar
+										);
+
+DELETE FROM OECD.medical_graduates;
+
+COPY OECD.medical_graduates(location, indicator, subject, measure, frequency, time, value, flagcodes)
+FROM 'C:/Users/schacko/Desktop/oecd data/medical_graduates.csv'  
+DELIMITER ','
+CSV HEADER;                   
+
+COMMIT;

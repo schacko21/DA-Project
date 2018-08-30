@@ -1,0 +1,22 @@
+BEGIN;
+
+CREATE SCHEMA IF NOT EXISTS OECD;
+
+CREATE TABLE IF NOT EXISTS OECD.nurses(location TEXT
+										,indicator TEXT
+										,subject TEXT
+										,measure varchar
+										,frequency TEXT
+										,time integer
+										,value numeric
+										,flagcodes varchar
+										);
+
+DELETE FROM OECD.nurses;
+
+COPY OECD.nurses(location, indicator, subject, measure, frequency, time, value, flagcodes)
+FROM 'C:/Users/schacko/Desktop/oecd data/nurses.csv'  
+DELIMITER ','
+CSV HEADER;                   
+
+COMMIT;

@@ -1,0 +1,11 @@
+--- Countries and the highest & lowest # of graduates  (per 100,000 inhabitants) for nursing and medical graduates
+select ng.location
+		,max(ng.value) as highest_grad_nursing
+		,max(mg.value) as highest_grad_medical
+		,min(ng.value) as lowest_grad_nursing
+		,min(mg.value) as lowest_grad_medical
+
+FROM oecd.nursing_graduates AS ng
+left join oecd.medical_graduates AS MG on mg.location = ng.location
+GROUP BY ng.location
+ORDER BY highest_grad_nursing
